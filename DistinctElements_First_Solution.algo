@@ -1,0 +1,39 @@
+ALGORITHM distinctElements_firstSolution
+VAR
+    setone : ARRAY_OF INTEGER[6];
+    settwo : ARRAY_OF INTEGER[8];
+    i,j:INTEGER;
+    exist:BOOLEAN;
+    sum : INTEGER:=0;
+BEGIN
+    read(setone);
+    read(settwo);
+    /*******************distinct_elemnent for the first set ********************/
+    FOR i FROM 0 TO length(setone)-1 STEP 1  DO
+    FOR j FROM 0 TO length(settwo)-1 STEP 1  DO
+        IF (setone[i]==settwo[j]) THEN
+            exist:= TRUE;
+        ELSE
+            exist:= FALSE;
+        END_IF
+    END_FOR
+        IF (!exist) THEN
+        sum:=sum+setone[i];
+        END_IF
+    END_FOR
+        
+ /*******************distinct_elemnent for the second set ********************/
+    FOR i FROM 0 TO length(settwo)-1 STEP 1  DO
+    FOR j FROM 0 TO length(setone)-1 STEP 1  DO
+        IF (settwo[i]==setone[j]) THEN
+            exist:= TRUE;
+        ELSE
+            exist:= FALSE;
+        END_IF
+    END_FOR
+        IF (!exist) THEN
+        sum:=sum+settwo[i];
+        END_IF
+    END_FOR
+    write("the sum of all distinct elements is",sum);
+END
