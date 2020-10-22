@@ -1,0 +1,20 @@
+ALGORITHM overlappingElements_First
+VAR
+    setone : ARRAY_OF INTEGER[6];
+    settwo : ARRAY_OF INTEGER[8];
+    i,j:INTEGER;
+    sum : INTEGER:=0;
+BEGIN
+
+    Read(setone);
+    Read(settwo);
+    FOR i FROM 0 TO length(setone)-1 STEP 1  DO
+    FOR j FROM 0 TO length(settwo)-1 STEP 1  DO
+        IF (setone[i]==settwo[j]) THEN
+            sum:=sum+(setone[i]*2)
+        END_IF
+    END_FOR
+    END_FOR
+        
+    Write("the sum of all overlapping elements is",sum);
+END
