@@ -1,0 +1,30 @@
+ALGORITHM distinctElements_secondSolution
+VAR
+    setone : ARRAY_OF INTEGER[6];
+    settwo : ARRAY_OF INTEGER[8];
+    array: ARRAY_OF INTEGER[14];
+    htab :HASH_TABLE<INTEGER,INTEGER>;
+    i,count : INTEGER;
+    sum : INTEGER:=0;
+BEGIN
+    Read(setone);
+    Read(settwo);
+    /****************Concat the two set in one array ********/
+    array:=setone.Concat(settwo);
+    /******** loop the array to fix the count of each element***********/
+    FOR i FROM 0 TO length(array)-1 STEP 1  DO
+        IF (htab.lookup(array[i]) = TRUE) THEN
+        count := htab.get(array[i]);
+        htab.insert(array[i],count+1);
+        ELSE
+            htab.insert(array[i],1);
+        END_IF
+    END_FOR
+    /************************loop the hash table******************************/
+    FOR i FROM 0 TO length(array)-1 STEP 1  DO
+        IF (htab.get(array[i])==2) THEN
+            sum:=sum+array[i];
+        END_IF
+    END_FOR
+    Write("the sum of all overlapping elements is",sum);
+END
